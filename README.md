@@ -13,12 +13,10 @@ terraform -chdir=./infra/gcp apply
 ```
 
 ```
-NOTE: 
+NOTE: If you see this error, please rerun the command `terraform -chdir=./infra/gcp apply`
 ```
 ![image](https://user-images.githubusercontent.com/113747768/233051797-9a7bc598-563e-4401-b4de-371df27fccd2.png)
-```
-If you see this error, please rerun the command **terraform -chdir=./infra/gcp apply**
-```
+
 
 A ssh-key is created in folder /ssh for local machine to connect to the new VM. Copy this file to your $HOME/.ssh directory.
 ```
