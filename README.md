@@ -6,16 +6,19 @@ Open [google cloud console](https://console.cloud.google.com/) and create a new 
 
 <img width="562" alt="image" src="https://user-images.githubusercontent.com/113747768/233042865-27712f7c-124d-4563-bfae-20cac6eb586d.png">
 
-Run these two command to spin up the gcp infrasturcture.
+Run these two commands to spin up the gcp infrasturcture resources.
 ```
 terraform -chdir=./infra/gcp init
 terraform -chdir=./infra/gcp apply
 ```
 
 ```
-NOTE: If you see this error, please rerun the 
+NOTE: 
+```
 ![image](https://user-images.githubusercontent.com/113747768/233051797-9a7bc598-563e-4401-b4de-371df27fccd2.png)
-``
+```
+If you see this error, please rerun the command **terraform -chdir=./infra/gcp apply**
+```
 
 A ssh-key is created in folder /ssh for local machine to connect to the new VM. Copy this file to your $HOME/.ssh directory.
 ```
