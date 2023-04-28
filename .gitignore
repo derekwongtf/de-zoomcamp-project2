@@ -2,3 +2,7 @@ ignore/
 data/
 ssh/
 /sa-de-project.json
+infra/
+!infra/gcp/*.tf
+!infra/gcp/*.tfvars
+
