@@ -4,6 +4,7 @@
 1. What is the trend of the total violation parking tickets over a certain period of time?
 2. What are the major violation parking tickets?
 
+
 # Technologies
 * The following tools are used in this project.
 * Terraform - manage the infrastructure resource on cloud
@@ -28,6 +29,9 @@
 
 * The transformed data is loaded to production dataset 'dbt_derekwongtf' with table 'fact_parking_tickets' ***partitioned by** 'Month' and **clustered by** 'Violation Code'
 <img width="617" alt="image" src="https://user-images.githubusercontent.com/113747768/236158516-3a56e46e-42d0-4ff5-8932-25b796ec90d1.png">
+
+# Dataflow Architecture
+<img width="481" alt="image" src="https://user-images.githubusercontent.com/113747768/236183667-074db201-c95d-462b-bcb0-909f8128bbda.png">
 
 
 # Dashboard
