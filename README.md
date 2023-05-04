@@ -31,12 +31,13 @@
 <img width="617" alt="image" src="https://user-images.githubusercontent.com/113747768/236158516-3a56e46e-42d0-4ff5-8932-25b796ec90d1.png">
 
 # Dataflow Architecture
-<img width="481" alt="image" src="https://user-images.githubusercontent.com/113747768/236183667-074db201-c95d-462b-bcb0-909f8128bbda.png">
+<img width="492" alt="image" src="https://user-images.githubusercontent.com/113747768/236186515-bbff1f92-60c7-4358-bff7-d4a71b00f531.png">
 
 
 # Dashboard
 <img width="474" alt="image" src="https://user-images.githubusercontent.com/113747768/236154775-c5cbb4d5-bcc5-4018-b899-4107f6965cb7.png">
 https://lookerstudio.google.com/s/jWdkdirwnyw
+
 
 # Reproducability
 
