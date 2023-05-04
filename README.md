@@ -1,25 +1,19 @@
 # Data Engineering - Zoomcamp - Project 2
 
 # Problem
-1. What is the trend of the total violation parking tickets over a certain of period?
-2. What are the major of the violation parking tickets?
+1. What is the trend of the total violation parking tickets over a certain period of time?
+2. What are the major violation parking tickets?
 
 # Technologies
-The following tools are used in this project.
-
-Terraform - manage the infrastructure resource on cloud
-
-Google Cloud Storage - datalake
-
-Google Compute Engine(GCE) - virtual machine to host this project data pipeline
-
-Google BigQuery - data warehouse
-
-Prefect Cloud - manage and monitor the workflow
-
-dbt cloud - transformation tool to implement data modeling
-
-Looker Studio - visualize data and create dashboard
+* The following tools are used in this project.
+* Terraform - manage the infrastructure resource on cloud
+* Google Cloud Storage(GCS) - datalake
+* Google Compute Engine(GCE) - virtual machine to host data pipeline
+* Google BigQuery - data warehouse
+* Prefect Cloud - manage and monitor the workflow
+* Spark - process large-scale data
+* dbt cloud - transformation tool to implement data modeling
+* Looker Studio - visualize data and create dashboard
 
 
 # Point to Note
