@@ -2,18 +2,25 @@
 
 # Problem
 1. What is the trend of the total violation parking tickets over a certain of period?
-2. what are the major of the violation parking tickets?
+2. What are the major of the violation parking tickets?
 
 # Technologies
 The following tools are used in this project.
 
 Terraform - manage the infrastructure resource on cloud
+
 Google Cloud Storage - datalake
+
 Google Compute Engine(GCE) - virtual machine to host this project data pipeline
+
 Google BigQuery - data warehouse
+
 Prefect Cloud - manage and monitor the workflow
+
 dbt cloud - transformation tool to implement data modeling
+
 Looker Studio - visualize data and create dashboard
+
 
 # Point to Note
 * This project uses **GCS Bucket** as the data lake. The data file of each fiscal year is converted from a single csv into **hive-partitioned parquet** using the **SPARK**. 
@@ -25,7 +32,7 @@ Looker Studio - visualize data and create dashboard
 * The **dbt** is used to transform data. It involves **joining 2 tables** of data, ***decoding*** violation code into human-understandable description, **cleaning** invalid data which is outside of particular fiscal year[^1].
 <img width="537" alt="image" src="https://user-images.githubusercontent.com/113747768/236157128-bc3912aa-ed76-481d-a05e-c80e6391fc30.png">
 
-* The transformed data is loaded to production dataset 'dbt_derekwongtf' with table 'fact_parking_tickets' ***paritioned by** 'Month' and **clustered by** 'Violation Code'
+* The transformed data is loaded to production dataset 'dbt_derekwongtf' with table 'fact_parking_tickets' ***partitioned by** 'Month' and **clustered by** 'Violation Code'
 <img width="617" alt="image" src="https://user-images.githubusercontent.com/113747768/236158516-3a56e46e-42d0-4ff5-8932-25b796ec90d1.png">
 
 
