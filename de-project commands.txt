@@ -1,0 +1,64 @@
+In home directory,
+mkdir spark
+cd spark
+wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+tar xzfv openjdk-11.0.2_linux-x64_bin.tar.gz
+export JAVA_HOME="${HOME}/spark/jdk-11.0.2"
+export PATH="${JAVA_HOME}/bin:${PATH}"
+
+wget https://dlcdn.apache.org/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz
+tar xzfv spark-3.3.2-bin-hadoop3.tgz
+rm spark-3.3.2-bin-hadoop3.tgz
+export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
+export PATH="${SPARK_HOME}/bin:${PATH}"
+
+export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
+
+source ~/.bashrc
+
+sudo apt update
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+Disconnect from VM and reconnect to it
+pip install pyopenssl --upgrade
+
+
+pip install prefect
+pip install prefect_gcp
+pip install tqdm
+
+
+prefect cloud login -k pnu_NIPLAv3OK3bOySYSCzB8m2mkbH0IJj1LLD2n
+
+prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "manual-ingest" \
+--apply
+
+prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "monthly-ingest" \
+--params='{"year": 2023, "version": "pvqr-7yc4"}' \
+--cron='0 0 1 * *' \
+--apply
+
+screen -S prefect_agent
+prefect agent start -q 'default'
+
+bq mkdef  \
+--source_format=PARQUET  \
+--hive_partitioning_mode=AUTO  \
+--hive_partitioning_source_uri_prefix=gs://datalake_de-project-230419/data/pq/ \
+gs://datalake_de-project-230419/data/pq/*.parquet > parking_ticket_tabledef
+ 
+bq mk --external_table_definition=parking_ticket_tabledef raw_parking_tickets.yearly_data_external
+
+
+bq --location=asia-east1 mk -d \
+    --default_table_expiration 0 \
+    --description "de-project dataset." \
+    all_parking_tickets
+
+	
+bq load \
+--location=asia-east1 \
+--source_format=PARQUET \
+all_parking_tickets.yearly_data \
+"gs://datalake_de-project-230419/data/pq/2023/*.parquet"

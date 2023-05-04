@@ -1,0 +1,222 @@
+[
+  {
+    "mode": "NULLABLE",
+    "name": "Summons_Number",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Plate_ID",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Registration_State",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Plate_Type",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issue_Date",
+    "type": "DATE"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Code",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Vehicle_Body_Type",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Vehicle_Make",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issuing_Agency",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Street_Code1",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Street_Code2",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Street_Code3",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Vehicle_Expiration_Date",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Location",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Precinct",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issuer_Precinct",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issuer_Code",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issuer_Command",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issuer_Squad",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Time",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Time_First_Observed",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_County",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_In_Front_Of_Or_Opposite",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "House_Number",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Street_Name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Intersecting_Street",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Date_First_Observed",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Law_Section",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Sub_Division",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Legal_Code",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Days_Parking_In_Effect____",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "From_Hours_In_Effect",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "To_Hours_In_Effect",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Vehicle_Color",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Unregistered_Vehicle_",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Vehicle_Year",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Meter_Number",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Feet_From_Curb",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Post_Code",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Violation_Description",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "No_Standing_or_Stopping_Violation",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Hydrant_Violation",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Double_Parking_Violation",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Issue_Day",
+    "type": "INTEGER"
+  }
+]

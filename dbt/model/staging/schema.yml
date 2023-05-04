@@ -1,0 +1,31 @@
+
+version: 2
+
+sources:
+    - name: staging
+      database: de-project-230419
+      schema: raw_parking_tickets
+      tables:
+        - name: yearly_data_external
+
+models:
+    - name: stg_parking_tickets
+      description: "New York Data"
+      columns:
+          - name: summons_number
+            description: "The primary key for this table"
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: issue_date 
+            description: issue date
+          - name: violation_code 
+            description: violation code.
+          - name: violation_time 
+            description: violation time.
+          - name: vehicle_make 
+            description: vehicle make.
+          - name: vehicle_body_type 
+            description: vehicle body type.
