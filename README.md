@@ -1,5 +1,38 @@
 # Data Engineering - Zoomcamp - Project 2
 
+# Problem
+1. What is the trend of the total violation parking tickets over a certain of period?
+2. what are the major of the violation parking tickets?
+
+# Technologies
+The following tools are used in this project.
+
+Terraform - manage the infrastructure resource on cloud
+Google Cloud Storage - datalake
+Google Compute Engine(GCE) - virtual machine to host this project data pipeline
+Google BigQuery - data warehouse
+Prefect Cloud - manage and monitor the workflow
+dbt cloud - transformation tool to implement data modeling
+Looker Studio - visualize data and create dashboard
+
+# Point to Note
+* This project uses **GCS Bucket** as the data lake. The data file of each fiscal year is converted from a single csv into **hive-partitioned parquet** using the **SPARK**. 
+ <img width="633" alt="image" src="https://user-images.githubusercontent.com/113747768/236157846-73ebd99e-9ad4-4523-be67-73c21cb5e334.png">
+
+* The converted parquet files can be query in **Bigquery** with external table. 
+<img width="854" alt="image" src="https://user-images.githubusercontent.com/113747768/236158387-0fd91579-8589-4574-91da-31e0550b1d7c.png">
+
+* The **dbt** is used to transform data. It involves **joining 2 tables** of data, ***decoding*** violation code into human-understandable description, **cleaning** invalid data which is outside of particular fiscal year[^1].
+<img width="537" alt="image" src="https://user-images.githubusercontent.com/113747768/236157128-bc3912aa-ed76-481d-a05e-c80e6391fc30.png">
+
+* The transformed data is loaded to production dataset 'dbt_derekwongtf' with table 'fact_parking_tickets' ***paritioned by** 'Month' and **clustered by** 'Violation Code'
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/113747768/236158516-3a56e46e-42d0-4ff5-8932-25b796ec90d1.png">
+
+
+# Dashboard
+<img width="474" alt="image" src="https://user-images.githubusercontent.com/113747768/236154775-c5cbb4d5-bcc5-4018-b899-4107f6965cb7.png">
+https://lookerstudio.google.com/s/jWdkdirwnyw
+
 # Reproducability
 
 Open [google cloud console](https://console.cloud.google.com/) and create a new GCP project by clicking New Project button.
@@ -74,7 +107,7 @@ pip install tqdm
 ```
 Note: if you encounter error when installing pyopenssl, try re-login to VM or reboot it.
 
-Generate a API Key on Prefect Cloud
+Go to [Prefect Cloud](https://www.prefect.io/cloud/), generate a API Key on Prefect Cloud
 ![image](https://user-images.githubusercontent.com/113747768/236147432-04561725-8ecc-4609-a528-998c09e2f565.png)
 
 Configure it to VM's Prefect 
@@ -82,13 +115,13 @@ Configure it to VM's Prefect
 prefect cloud login -k [Prefect Cloud API Key]
 ```
 
-Option 1 -- Schedule run
+Deploy schedule run
 prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "monthly-ingest" \
 --params='{"year": 2023, "version": "pvqr-7yc4"}' \
 --cron='0 0 1 * *' \
 --apply
 
-Option 2 -- Manual run 
+Deploy manual run 
 prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "manual-ingest" \
 --apply
 
@@ -101,7 +134,8 @@ Here is the input.
 | 2021      | kvfd-bves  |
 | 2022      | 7mxj-7a6y  |
 
-Create a new repository for dbt
+
+Go to [dbt Cloud](https://cloud.getdbt.com/). Create a new repository for dbt.
 
 Create a new account on dbt cloud and setup a new project
 ![image](https://user-images.githubusercontent.com/113747768/236152344-7efc80f3-a17b-41e4-b243-44f615f0d404.png)
@@ -115,3 +149,4 @@ During the dbt project setup, configure the followings
 select the repository created just now on github.
 <img width="571" alt="image" src="https://user-images.githubusercontent.com/113747768/236153418-5d95afa0-78fd-45c7-af17-aa07a72c2925.png">
 
+[^1] [City probes after News finds thousands of parking tickets written for violations that haven’t happened yet](https://www.nydailynews.com/news/politics/ny-parking-tickets-invalid-future-dates-20190609-pcia3ze3szbuxfr6c7ut2ilqvm-story.html)
