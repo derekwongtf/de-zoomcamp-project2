@@ -36,6 +36,8 @@ https://lookerstudio.google.com/s/jWdkdirwnyw
 
 # Reproducability
 
+Clone [this repository](https://github.com/derekwongtf/de-zoomcamp-project2.git) to your local workspace.
+
 Open [google cloud console](https://console.cloud.google.com/) and create a new GCP project by clicking New Project button.
 
 <img width="562" alt="image" src="https://user-images.githubusercontent.com/113747768/233042865-27712f7c-124d-4563-bfae-20cac6eb586d.png">
@@ -68,7 +70,10 @@ ssh -i ~/.ssh/de-project [username of the cloud gmail]@[VM external IP address]
 ```
 
 ## In VM
-In home directory, create a new directory to install the spark.
+
+Clone [this repository](https://github.com/derekwongtf/de-zoomcamp-project2.git) to VM workspace.
+
+Back to home directory, create a new directory to install the spark.
 ```
 mkdir spark
 cd spark
