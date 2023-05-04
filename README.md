@@ -31,7 +31,7 @@
 <img width="617" alt="image" src="https://user-images.githubusercontent.com/113747768/236158516-3a56e46e-42d0-4ff5-8932-25b796ec90d1.png">
 
 # Dataflow Architecture
-<img width="492" alt="image" src="https://user-images.githubusercontent.com/113747768/236186515-bbff1f92-60c7-4358-bff7-d4a71b00f531.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113747768/236186784-8e58f6f5-6f63-4e63-8bc9-ac3a1121eb9b.png">
 
 
 # Dashboard
