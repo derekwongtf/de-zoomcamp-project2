@@ -117,14 +117,18 @@ prefect cloud login -k [Prefect Cloud API Key]
 ```
 
 Deploy schedule run
+```
 prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "monthly-ingest" \
 --params='{"year": 2023, "version": "pvqr-7yc4"}' \
 --cron='0 0 1 * *' \
 --apply
+```
 
 Deploy manual run 
+```
 prefect deployment build flows/vm-etl-web-to-gcs.py:etl_web_to_gcs -n "manual-ingest" \
 --apply
+```
 
 Input the values for the parameters.
 ![image](https://user-images.githubusercontent.com/113747768/236148926-efbd1792-b293-414a-8fb9-a4ef09afce56.png)
@@ -147,7 +151,7 @@ During the dbt project setup, configure the followings
 <img width="415" alt="image" src="https://user-images.githubusercontent.com/113747768/236152841-47e7fede-30f3-473f-8ee2-d823bd227617.png">
 <img width="423" alt="image" src="https://user-images.githubusercontent.com/113747768/236152930-fff8e574-73fb-4827-a3ec-942d8240eccc.png">
 
-select the repository created just now on github.
+Select the repository created just now on github.
 <img width="571" alt="image" src="https://user-images.githubusercontent.com/113747768/236153418-5d95afa0-78fd-45c7-af17-aa07a72c2925.png">
 
 [^1] [City probes after News finds thousands of parking tickets written for violations that haven’t happened yet](https://www.nydailynews.com/news/politics/ny-parking-tickets-invalid-future-dates-20190609-pcia3ze3szbuxfr6c7ut2ilqvm-story.html)
