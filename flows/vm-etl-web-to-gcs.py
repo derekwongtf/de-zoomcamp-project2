@@ -1,31 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-import pyspark
-from pyspark.sql import SparkSession
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
+import process_data
 import requests
 import os
 from tqdm import tqdm
 
-
-# In[2]:
-
-
-spark = SparkSession.builder \
-    .master("local[*]") \
-    .appName('test') \
-    .getOrCreate()
-
-
-# In[3]:
-
-
-def fetch_from_web (dataset_url: str, year:int, chunk_size: int) -> str:
+@task()
+def fetch_from_web (dataset_url: str, year: int, chunk_size: int) -> str:
     local_dir = f"data/raw/{year}"
     local_filename= f"{local_dir}/rows.csv"
 
@@ -43,43 +27,20 @@ def fetch_from_web (dataset_url: str, year:int, chunk_size: int) -> str:
                 progress_bar.update(len(chunk))
     return local_dir
 
-
-# In[4]:
-
-
-def clean (input_path:str, year:int) -> str:
-    print(f'processing data for {year}')
-
-    output_path = f'data/pq/{year}'
+@task()
+def clean(input_path: str, year: int) -> str:
     
-    if not os.path.exists(f"{output_path}"):
-        os.makedirs(f"{output_path}")
+    output_path = f'data/pq'
+    process_data.spark_process(input_path, output_path, year)
 
-    df = spark.read \
-        .option("header", "true") \
-        .option("inferSchema", "true") \
-        .option("multiline", "true") \
-        .option("escape", "\"") \
-        .csv(input_path)
-
-    df \
-        .repartition(20) \
-        .write.parquet(output_path, mode='overwrite')
-    
     return output_path
-
-
-# In[5]:
-
 
 @task()
 def write_gcs(path: str) -> None:
-    """Upload local parquet file to GCS"""
+    """Upload local folder of parquet files to GCS"""
     gcp_cloud_storage_bucket_block = GcsBucket.load("de-project-gcs")
-    gcp_cloud_storage_bucket_block.upload_from_path(from_path=path, to_path=path)
-
-
-# In[6]:
+    gcp_cloud_storage_bucket_block.upload_from_path(from_path=path,to_path=path)
+    # gcp_cloud_storage_bucket_block.upload_from_folder(from_folder=path,to_folder=path)
 
 
 @flow()
@@ -89,29 +50,20 @@ def etl_web_to_gcs(year: int, version: str) -> None:
 
     input_dir = fetch_from_web (dataset_url, year, chunk_size)
     rootdir = clean(input_dir, year)
-    
-    for file in os.listdir(rootdir):
-        f = os.path.join(rootdir, file)
-        if os.path.isfile(f):
-            write_gcs(f)
-
-
-# In[7]:
-
+    # write_gcs(rootdir)
+    for root, dirs, files in os.walk(rootdir):
+        for filename in files:
+            filename = os.path.join(root, filename)
+            write_gcs(filename)
 
 @flow()
 def etl_parent_flow(years: dict = {2023: 'pvqr-7yc4'}):
     for year, version in years.items():
+        print(f'processing data for {year}')
         etl_web_to_gcs(year, version)
-
         
-
-
-# In[8]:
-
-
 if __name__ == "__main__":
     # years = {2023: 'pvqr-7yc4', 2022: '7mxj-7a6y', 2021: 'kvfd-bves', 2020: 'p7t3-5i9s', 2019: 'faiq-9dfq'}
-    years = {2021: 'kvfd-bves'}
+    years = {2022: '7mxj-7a6y'}
     etl_parent_flow(years)
 
