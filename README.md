@@ -167,4 +167,11 @@ During the dbt project setup, configure the followings
 Select the repository created just now on github.
 <img width="571" alt="image" src="https://user-images.githubusercontent.com/113747768/236153418-5d95afa0-78fd-45c7-af17-aa07a72c2925.png">
 
+Copy the folders and files of dbt folder of this repository to dbt cloud
+
+Build the production model in Bigquery
+```
+dbt build --full-refresh
+```
+
 [^1] [City probes after News finds thousands of parking tickets written for violations that haven’t happened yet](https://www.nydailynews.com/news/politics/ny-parking-tickets-invalid-future-dates-20190609-pcia3ze3szbuxfr6c7ut2ilqvm-story.html)
