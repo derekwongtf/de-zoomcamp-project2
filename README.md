@@ -1,5 +1,8 @@
 # Data Engineering - Zoomcamp - Project 2
 
+# Overview
+This project aims to build an end-to-end data pipeline using the various cloud technologies. It uses the datasets from the [New York City Open Data](https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2023/pvqr-7yc4).
+
 # Problem
 1. What is the trend of the total violation parking tickets over a certain period of time?
 2. What are the major violation parking tickets?
